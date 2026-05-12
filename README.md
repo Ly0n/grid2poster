@@ -10,7 +10,7 @@
   <img src="./posters/india_grid_blackout_20260512_100511.png" alt="India transmission grid — blackout theme" width="380"/>
 </p>
 
-<p align="center"><em>India · <code>paper_grid theme with EPSG:3857 Pseudo-Mercator projection</code> and <code>blackout theme with EPSG:8857 Equal Earth projection </code> themes</em></p>
+<p align="center"><em> <code>paper_grid theme · EPSG:3857 Pseudo-Mercator projection</code> and <code>blackout theme · EPSG:8857 Equal Earth projection </code> </em></p>
 
 ## Data
 
@@ -21,6 +21,10 @@ GridToPoster uses OpenStreetMap features tagged as:
 - `power=cable` when enabled
 
 Feature completeness depends on OpenStreetMap coverage in the selected country or region.
+
+### Contributing to the data
+
+Coverage in your country can be improved by mapping transmission infrastructure directly in OpenStreetMap. [MapYourGrid](https://mapyourgrid.org) is a community initiative that coordinates this work — it provides tutorials, country-level completeness statistics, and tasking tools for tracing power lines and substations from imagery.
 
 ## Installation
 
