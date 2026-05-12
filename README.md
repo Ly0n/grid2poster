@@ -1,8 +1,7 @@
 # Grid2Poster
 
 Generate print-ready posters of electrical grid infrastructure from OpenStreetMap data.
-
-The script downloads country-level power infrastructure, including transmission lines, substations, and power plants, then renders a static poster using GeoPandas, OSMnx, and Matplotlib.
+The script first downloads country-level transmission lines, and then uses GeoPandas, OSMnx, and Matplotlib to render a static poster.
 
 ## Data
 
