@@ -1,0 +1,20 @@
+{
+  "name": "Sunset",
+  "description": "Peach, rose, and warm golden-hour transmission lines.",
+  "bg": "#FDF5F0",
+  "text": "#C45C3E",
+  "subtext": "#D87A5A",
+  "boundary": "#F8E8E0",
+  "line_unknown": "#F5D0C8",
+  "line_low": "#F0B8A8",
+  "line_mid": "#E8A088",
+  "line_high": "#D87A5A",
+  "line_extra": "#C45C3E",
+  "fade": "#FDF5F0",
+  "substation_fill": "#F8E8E0",
+  "substation_outline": "#E8A088",
+  "substation_marker": "#D87A5A",
+  "plant_fill": "#F0D8D0",
+  "plant_outline": "#C45C3E",
+  "plant_marker": "#C45C3E"
+}

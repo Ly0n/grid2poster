@@ -1,0 +1,20 @@
+{
+  "name": "Japanese Ink",
+  "description": "Ink-wash neutrals with a subtle red high-voltage accent.",
+  "bg": "#FAF8F5",
+  "text": "#2C2C2C",
+  "subtext": "#6A6A6A",
+  "boundary": "#F0EDE8",
+  "line_unknown": "#B8B8B8",
+  "line_low": "#909090",
+  "line_mid": "#6A6A6A",
+  "line_high": "#4A4A4A",
+  "line_extra": "#8B2500",
+  "fade": "#FAF8F5",
+  "substation_fill": "#F0EDE8",
+  "substation_outline": "#6A6A6A",
+  "substation_marker": "#4A4A4A",
+  "plant_fill": "#E8E4E0",
+  "plant_outline": "#8B2500",
+  "plant_marker": "#8B2500"
+}

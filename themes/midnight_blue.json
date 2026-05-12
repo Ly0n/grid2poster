@@ -1,0 +1,20 @@
+{
+  "name": "Midnight Blue",
+  "description": "Deep navy with gold and copper transmission hierarchy.",
+  "bg": "#0A1628",
+  "text": "#D4AF37",
+  "subtext": "#A8893A",
+  "boundary": "#0F2235",
+  "line_unknown": "#6B5B4F",
+  "line_low": "#8B7355",
+  "line_mid": "#A8893A",
+  "line_high": "#C9A227",
+  "line_extra": "#D4AF37",
+  "fade": "#0A1628",
+  "substation_fill": "#0F2235",
+  "substation_outline": "#A8893A",
+  "substation_marker": "#C9A227",
+  "plant_fill": "#2A1F13",
+  "plant_outline": "#D4AF37",
+  "plant_marker": "#D4AF37"
+}

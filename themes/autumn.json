@@ -1,0 +1,20 @@
+{
+  "name": "Autumn",
+  "description": "Burnt oranges, deep reds, and golden seasonal warmth.",
+  "bg": "#FBF7F0",
+  "text": "#8B4513",
+  "subtext": "#B8450A",
+  "boundary": "#E8E0D0",
+  "line_unknown": "#E8C888",
+  "line_low": "#D9A050",
+  "line_mid": "#CC7A30",
+  "line_high": "#B8450A",
+  "line_extra": "#8B2500",
+  "fade": "#FBF7F0",
+  "substation_fill": "#E8E0D0",
+  "substation_outline": "#CC7A30",
+  "substation_marker": "#B8450A",
+  "plant_fill": "#D8CFC0",
+  "plant_outline": "#8B2500",
+  "plant_marker": "#8B2500"
+}

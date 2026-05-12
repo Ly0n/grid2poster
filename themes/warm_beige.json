@@ -1,0 +1,20 @@
+{
+  "name": "Warm Beige",
+  "description": "Earthy sepia neutrals for a vintage infrastructure map.",
+  "bg": "#F5F0E8",
+  "text": "#6B5B4F",
+  "subtext": "#A08B70",
+  "boundary": "#E8E4D8",
+  "line_unknown": "#D9CFC2",
+  "line_low": "#C9BBAA",
+  "line_mid": "#B5A48E",
+  "line_high": "#A08B70",
+  "line_extra": "#8B7355",
+  "fade": "#F5F0E8",
+  "substation_fill": "#E8E4D8",
+  "substation_outline": "#B5A48E",
+  "substation_marker": "#A08B70",
+  "plant_fill": "#DDD5C8",
+  "plant_outline": "#8B7355",
+  "plant_marker": "#8B7355"
+}

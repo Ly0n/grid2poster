@@ -1,0 +1,20 @@
+{
+  "name": "Forest",
+  "description": "Sage and deep green organic botanical palette.",
+  "bg": "#F0F4F0",
+  "text": "#2D4A3E",
+  "subtext": "#5A8A70",
+  "boundary": "#D4E8D4",
+  "line_unknown": "#A0C8B0",
+  "line_low": "#7AAA90",
+  "line_mid": "#5A8A70",
+  "line_high": "#3D6B55",
+  "line_extra": "#2D4A3E",
+  "fade": "#F0F4F0",
+  "substation_fill": "#D4E8D4",
+  "substation_outline": "#5A8A70",
+  "substation_marker": "#3D6B55",
+  "plant_fill": "#B8D4D4",
+  "plant_outline": "#2D4A3E",
+  "plant_marker": "#2D4A3E"
+}

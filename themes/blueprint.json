@@ -1,0 +1,20 @@
+{
+  "name": "Blueprint",
+  "description": "Architectural blueprint styling for technical grid posters.",
+  "bg": "#1A3A5C",
+  "text": "#E8F4FF",
+  "subtext": "#C5DCF0",
+  "boundary": "#1E4570",
+  "line_unknown": "#5A96C0",
+  "line_low": "#7BAED4",
+  "line_mid": "#9FC5E8",
+  "line_high": "#C5DCF0",
+  "line_extra": "#E8F4FF",
+  "fade": "#1A3A5C",
+  "substation_fill": "#1E4570",
+  "substation_outline": "#9FC5E8",
+  "substation_marker": "#E8F4FF",
+  "plant_fill": "#0F2840",
+  "plant_outline": "#C5DCF0",
+  "plant_marker": "#E8F4FF"
+}

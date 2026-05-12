@@ -1,0 +1,20 @@
+{
+  "name": "Neon Cyberpunk",
+  "description": "Electric cyan and magenta on a dark night background.",
+  "bg": "#0D0D1A",
+  "text": "#00FFFF",
+  "subtext": "#00C8C8",
+  "boundary": "#151525",
+  "line_unknown": "#006870",
+  "line_low": "#0098A0",
+  "line_mid": "#00C8C8",
+  "line_high": "#00FFFF",
+  "line_extra": "#FF00FF",
+  "fade": "#0D0D1A",
+  "substation_fill": "#151525",
+  "substation_outline": "#00C8C8",
+  "substation_marker": "#00FFFF",
+  "plant_fill": "#2A1232",
+  "plant_outline": "#FF00FF",
+  "plant_marker": "#FF00FF"
+}
