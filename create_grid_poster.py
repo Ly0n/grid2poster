@@ -589,7 +589,7 @@ def render_poster(
     ax.text(
         0.985,
         0.018,
-        "© OpenStreetMap contributors. Visit MapYourGrid.org to find out how you can contribute to this data.",
+        "© OpenStreetMap contributors. \n Visit MapYourGrid.org to find out how you can contribute to this data.",
         transform=ax.transAxes,
         ha="right",
         va="bottom",
