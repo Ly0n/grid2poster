@@ -11,8 +11,6 @@ GridToPoster uses OpenStreetMap features tagged as:
 - `power=line`
 - `power=minor_line` when enabled
 - `power=cable` when enabled
-- `power=substation`
-- `power=plant`
 
 Feature completeness depends on OpenStreetMap coverage in the selected country or region.
 
