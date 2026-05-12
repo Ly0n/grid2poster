@@ -641,6 +641,14 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         help="Projection used for rendering. EPSG:3857 Pseudo-Mercator works well for country posters.",
     )
     parser.add_argument("--hide-metadata", action="store_true", help="Do not print segment counts on poster")
+    parser.add_argument(
+        "--export-geojson",
+        nargs="?",
+        const="",
+        default=None,
+        help="Also save all transmission lines as a single GeoJSON (WGS84). "
+             "Optionally pass a path; otherwise written next to the poster.",
+    )
     parser.add_argument("--verbose-osmnx", action="store_true", help="Print OSMnx request logs")
     return parser.parse_args(list(argv))
 
@@ -679,6 +687,18 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
     lines_projected = prepare_lines(raw_lines, boundary_wgs84, args.crs)
 
     out = args.output or output_path(args.country, args.theme, args.format)
+
+    if args.export_geojson is not None:
+        if args.export_geojson:
+            geojson_path = Path(args.export_geojson)
+        else:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            geojson_path = POSTERS_DIR / f"{slugify(args.country)}_grid_{timestamp}.geojson"
+        geojson_path.parent.mkdir(parents=True, exist_ok=True)
+        export = lines_projected.to_crs("EPSG:4326").drop(columns=["sort_voltage"], errors="ignore")
+        export.to_file(geojson_path, driver="GeoJSON")
+        print(f"Saved GeoJSON: {geojson_path}")
+
     print(f"Rendering {len(lines_projected):,} line segments with theme '{theme.name}'")
     render_poster(
         country=args.country,

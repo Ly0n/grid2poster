@@ -2,15 +2,15 @@
 
 <p align="center">
   Generate print-ready posters of electrical grid infrastructure from OpenStreetMap data.<br/>
-  Transmission lines for a country or continent are downloaded and rendered with GeoPandas, OSMnx, and Matplotlib.
+  Transmission lines for a country or continent are downloaded and rendered with GeoPandas, OSMnx, and Matplotlib. The project is heavily inspired and reused styling from <a href="https://github.com/originalankur/maptoposter">maptoposter</a>.
 </p>
 
 <p align="center">
-  <img src="./posters/india_grid_paper_grid_20260512_125057.png" alt="India transmission grid — paper_grid theme" width="380"/>
+  <img src="./posters/india_grid_neon_cyberpunk_20260512_143421.png" alt="India transmission grid — paper_grid theme" width="380"/>
   <img src="./posters/africa_grid_paper_grid_20260512_144322.png" alt="Africa transmission grid — paper_grid theme" width="380"/>
 </p>
 
-<p align="center"><em> <code>paper_grid theme · EPSG:3857 Pseudo-Mercator projection</code> and <code>paper_grid theme · EPSG:3857 Pseudo-Mercator projection </code> </em></p>
+<p align="center"><em> Grid2Poster supports countries, states, provinces and continents, as well as optional administrative boundaries. </em></p>
 
 ## Data
 
