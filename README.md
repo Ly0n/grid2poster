@@ -1,4 +1,4 @@
-# GridToPoster
+# Grid2Poster
 
 Generate print-ready posters of electrical grid infrastructure from OpenStreetMap data.
 
