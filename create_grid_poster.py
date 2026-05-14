@@ -45,6 +45,21 @@ CACHE_DIR = Path("cache")
 POSTERS_DIR = Path("posters")
 THEMES_DIR = Path("themes")
 FILE_ENCODING = "utf-8"
+MM_PER_INCH = 25.4
+
+PAPER_SIZES: dict[str, tuple[float, float]] = {
+    # ISO 216 A-series (portrait, width × height in mm)
+    "a5": (148.0, 210.0),
+    "a4": (210.0, 297.0),
+    "a3": (297.0, 420.0),
+    "a2": (420.0, 594.0),
+    "a1": (594.0, 841.0),
+    "a0": (841.0, 1189.0),
+    # ANSI / North American sizes
+    "letter": (215.9, 279.4),
+    "legal": (215.9, 355.6),
+    "tabloid": (279.4, 431.8),
+}
 
 NATURAL_EARTH_URL = (
     "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/"
@@ -552,8 +567,7 @@ def render_poster(
     theme: Theme,
     width: float,
     height: float,
-    output_file: Path,
-    fmt: str,
+    outputs: list[tuple[Path, str]],
     dpi: int,
     include_metadata: bool,
 ) -> None:
@@ -658,17 +672,19 @@ def render_poster(
         zorder=20,
     )
 
-    save_kwargs: dict[str, Any] = {
-        "format": fmt,
-        "facecolor": theme.bg,
-        "bbox_inches": None,
-        "pad_inches": 0,
-    }
-    if fmt == "png":
-        save_kwargs["dpi"] = dpi
+    for output_file, fmt in outputs:
+        save_kwargs: dict[str, Any] = {
+            "format": fmt,
+            "facecolor": theme.bg,
+            "bbox_inches": None,
+            "pad_inches": 0,
+        }
+        if fmt == "png":
+            save_kwargs["dpi"] = dpi
 
-    output_file.parent.mkdir(exist_ok=True)
-    fig.savefig(output_file, **save_kwargs)
+        output_file.parent.mkdir(exist_ok=True)
+        fig.savefig(output_file, **save_kwargs)
+        print(f"Saved poster: {output_file}")
     plt.close(fig)
 
 
@@ -685,7 +701,7 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
              "All polygonal features in the file are dissolved into a single boundary.",
     )
     parser.add_argument("--display-country", help="Text to print on the poster")
-    parser.add_argument("--theme", "-t", default="electric_midnight", help="Theme ID from themes/")
+    parser.add_argument("--theme", "-t", default="paper_grid", help="Theme ID from themes/")
     parser.add_argument("--list-themes", action="store_true", help="List available themes and exit")
     parser.add_argument("--include-minor-lines", action="store_true", help="Also fetch power=minor_line")
     parser.add_argument("--include-cables", action="store_true", help="Also fetch power=cable")
@@ -695,8 +711,19 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         help="Keep overseas territories and other polygons far from the main landmass. "
              "By default only the mainland (and nearby islands) is rendered.",
     )
-    parser.add_argument("--width", "-W", type=float, default=12.0, help="Poster width in inches")
-    parser.add_argument("--height", "-H", type=float, default=16.0, help="Poster height in inches")
+    parser.add_argument(
+        "--paper-size",
+        choices=sorted(PAPER_SIZES),
+        help="Preset paper size in portrait orientation. Overrides --width and --height. "
+             "Use --landscape to flip orientation.",
+    )
+    parser.add_argument("--width", "-W", type=float, default=297.0, help="Poster width in millimeters (default: A3 short side)")
+    parser.add_argument("--height", "-H", type=float, default=420.0, help="Poster height in millimeters (default: A3 long side)")
+    parser.add_argument(
+        "--landscape",
+        action="store_true",
+        help="Render in landscape (horizontal) orientation. Swaps width and height if width < height.",
+    )
     parser.add_argument("--dpi", type=int, default=300, help="Raster output DPI")
     parser.add_argument(
         "--tile-size-km",
@@ -704,8 +731,20 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         default=200,
         help="Overpass query tile size in kilometers. Use smaller values for very large countries or busy servers.",
     )
-    parser.add_argument("--format", "-f", choices=["png", "svg", "pdf"], default="png", help="Output format")
-    parser.add_argument("--output", "-o", type=Path, help="Output file path")
+    parser.add_argument(
+        "--format",
+        "-f",
+        nargs="+",
+        choices=["png", "svg", "pdf"],
+        default=["png", "svg"],
+        help="Output format(s). Pass multiple values to write the poster in several formats at once.",
+    )
+    parser.add_argument(
+        "--output",
+        "-o",
+        type=Path,
+        help="Output file path. When set, only a single file is written and its format is inferred from the extension.",
+    )
     parser.add_argument(
         "--crs",
         default="EPSG:3857",
@@ -744,6 +783,14 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
     theme = load_theme(args.theme)
     display_country = args.display_country or args.country
 
+    if args.paper_size:
+        width_mm, height_mm = PAPER_SIZES[args.paper_size]
+    else:
+        width_mm, height_mm = args.width, args.height
+    if args.landscape and width_mm < height_mm:
+        width_mm, height_mm = height_mm, width_mm
+    width, height = width_mm / MM_PER_INCH, height_mm / MM_PER_INCH
+
     if args.boundary_geojson:
         print(f"Loading boundary from {args.boundary_geojson}")
         boundary_wgs84 = load_boundary_from_geojson(args.boundary_geojson, args.country)
@@ -761,7 +808,14 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
     boundary_projected = boundary_wgs84.to_crs(args.crs)
     lines_projected = prepare_lines(raw_lines, boundary_wgs84, args.crs)
 
-    out = args.output or output_path(args.country, args.theme, args.format)
+    if args.output:
+        fmt = (args.output.suffix.lstrip(".") or args.format[0]).lower()
+        if fmt not in {"png", "svg", "pdf"}:
+            print(f"Error: cannot infer output format from {args.output} (suffix '{args.output.suffix}')", file=sys.stderr)
+            return 2
+        outputs = [(args.output, fmt)]
+    else:
+        outputs = [(output_path(args.country, args.theme, f), f) for f in args.format]
 
     if args.export_geojson is not None:
         if args.export_geojson:
@@ -781,14 +835,12 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         boundary=boundary_projected,
         lines=lines_projected,
         theme=theme,
-        width=args.width,
-        height=args.height,
-        output_file=out,
-        fmt=args.format,
+        width=width,
+        height=height,
+        outputs=outputs,
         dpi=args.dpi,
         include_metadata=not args.hide_metadata,
     )
-    print(f"Saved poster: {out}")
     return 0
 
 

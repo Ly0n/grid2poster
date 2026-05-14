@@ -46,11 +46,12 @@ For large countries, reduce the Overpass query tile size:
 python create_grid_poster.py --country France --tile-size-km 150
 ```
 
-Export as SVG or PDF for vector workflows:
+By default every run writes both a PNG and an SVG. Override `--format` to pick a specific set of formats:
 
 ```bash
 python create_grid_poster.py --country Spain --format svg
 python create_grid_poster.py --country Poland --format pdf
+python create_grid_poster.py --country France --format png svg pdf
 ```
 
 Include additional infrastructure layers:
@@ -94,20 +95,22 @@ Without a path, the file is written to `posters/` next to the poster. The export
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `--country` | — | Country or region name resolvable by Nominatim, or a continent name (`Africa`, `Antarctica`, `Asia`, `Europe`, `North America`, `Oceania`, `South America`). |
+| `--country` | — | Country or region name resolvable by Nominatim, or a continent name (`Africa`, `Asia`, `Europe`, `North America`, `Oceania`, `South America`). |
 | `--boundary-geojson` | — | Path to a local GeoJSON file with polygonal boundary features. Overrides the Nominatim/Natural Earth lookup. Useful for custom regions, sub-national areas, or offline workflows. |
 | `--display-country` | value of `--country` | Text to print on the poster. Useful when the geocoder name differs from the desired title. |
-| `--theme` | `electric_midnight` | Theme ID from the `themes/` directory. |
+| `--theme` | `paper_grid` | Theme ID from the `themes/` directory. |
 | `--list-themes` | — | List available themes and exit. |
 | `--include-minor-lines` | off | Also fetch `power=minor_line` features. |
 | `--include-cables` | off | Also fetch `power=cable` features. |
 | `--include-outlying` | off | Keep overseas territories and other polygons far from the main landmass. By default the geocoded boundary is filtered to the mainland (and nearby islands), so posters for countries like the Netherlands or France do not include Aruba, Curaçao, French Guiana, etc. |
-| `--width` | `12.0` | Poster width in inches. |
-| `--height` | `16.0` | Poster height in inches. |
+| `--paper-size` | — | Named preset, portrait orientation. Overrides `--width`/`--height`. Choices: `a5`, `a4`, `a3`, `a2`, `a1`, `a0`, `letter`, `legal`, `tabloid`. Combine with `--landscape` to flip. |
+| `--width` | `297.0` | Poster width in millimeters (default: A3 short side). |
+| `--height` | `420.0` | Poster height in millimeters (default: A3 long side). |
+| `--landscape` | off | Render in landscape (horizontal) orientation. Swaps width and height if width < height. |
 | `--dpi` | `300` | Raster output DPI (applies to PNG output). |
 | `--tile-size-km` | `200` | Overpass query tile size in kilometers. Use smaller values for very large countries or busy servers. |
-| `--format` | `png` | Output format: `png`, `svg`, or `pdf`. |
-| `--output` | auto-generated in `posters/` | Output file path. |
+| `--format` | `png svg` | Output format(s): any combination of `png`, `svg`, `pdf`. Multiple values are written in one run. |
+| `--output` | auto-generated in `posters/` | Output file path. When set, only a single file is written and its format is inferred from the extension. |
 | `--crs` | `EPSG:3857` | Projection used for rendering. EPSG:3857 (Pseudo-Mercator) works well for country posters. |
 | `--hide-metadata` | off | Do not print segment counts on the poster. |
 | `--export-geojson` | off | Also save all transmission lines as a single GeoJSON in WGS84 (EPSG:4326). Pass a path to override the default location in `posters/`. |
