@@ -570,6 +570,7 @@ def render_poster(
     outputs: list[tuple[Path, str]],
     dpi: int,
     include_metadata: bool,
+    title_size: float | None = None,
 ) -> None:
     fig, ax = plt.subplots(figsize=(width, height), facecolor=theme.bg)
     ax.set_facecolor(theme.bg)
@@ -603,7 +604,8 @@ def render_poster(
     add_gradient_fade(ax, theme.fade, "top", zorder=10)
 
     scale = min(width, height) / 12
-    font_main = FontProperties(family="DejaVu Sans", weight="bold", size=48 * scale)
+    title_pt = title_size if title_size is not None else 48 * scale
+    font_main = FontProperties(family="DejaVu Sans", weight="bold", size=title_pt)
     font_sub = FontProperties(family="DejaVu Sans", weight="normal", size=15 * scale)
     font_meta = FontProperties(family="DejaVu Sans Mono", weight="normal", size=8.5 * scale)
 
@@ -704,7 +706,12 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
     parser.add_argument("--theme", "-t", default="paper_grid", help="Theme ID from themes/")
     parser.add_argument("--list-themes", action="store_true", help="List available themes and exit")
     parser.add_argument("--include-minor-lines", action="store_true", help="Also fetch power=minor_line")
-    parser.add_argument("--include-cables", action="store_true", help="Also fetch power=cable")
+    parser.add_argument(
+        "--include-cables",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Fetch power=cable features (underground/submarine). Pass --no-include-cables to skip.",
+    )
     parser.add_argument(
         "--include-outlying",
         action="store_true",
@@ -725,6 +732,12 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         help="Render in landscape (horizontal) orientation. Swaps width and height if width < height.",
     )
     parser.add_argument("--dpi", type=int, default=300, help="Raster output DPI")
+    parser.add_argument(
+        "--title-size",
+        type=float,
+        default=None,
+        help="Title font size in points. Defaults to an auto-scaled value based on poster size.",
+    )
     parser.add_argument(
         "--tile-size-km",
         type=float,
@@ -840,6 +853,7 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         outputs=outputs,
         dpi=args.dpi,
         include_metadata=not args.hide_metadata,
+        title_size=args.title_size,
     )
     return 0
 

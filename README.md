@@ -101,13 +101,14 @@ Without a path, the file is written to `posters/` next to the poster. The export
 | `--theme` | `paper_grid` | Theme ID from the `themes/` directory. |
 | `--list-themes` | — | List available themes and exit. |
 | `--include-minor-lines` | off | Also fetch `power=minor_line` features. |
-| `--include-cables` | off | Also fetch `power=cable` features. |
+| `--include-cables` / `--no-include-cables` | on | Fetch `power=cable` features (underground/submarine). On by default; pass `--no-include-cables` to skip. |
 | `--include-outlying` | off | Keep overseas territories and other polygons far from the main landmass. By default the geocoded boundary is filtered to the mainland (and nearby islands), so posters for countries like the Netherlands or France do not include Aruba, Curaçao, French Guiana, etc. |
 | `--paper-size` | — | Named preset, portrait orientation. Overrides `--width`/`--height`. Choices: `a5`, `a4`, `a3`, `a2`, `a1`, `a0`, `letter`, `legal`, `tabloid`. Combine with `--landscape` to flip. |
 | `--width` | `297.0` | Poster width in millimeters (default: A3 short side). |
 | `--height` | `420.0` | Poster height in millimeters (default: A3 long side). |
 | `--landscape` | off | Render in landscape (horizontal) orientation. Swaps width and height if width < height. |
 | `--dpi` | `300` | Raster output DPI (applies to PNG output). |
+| `--title-size` | auto | Title font size in points. Auto-scaled from poster size by default; set to override. |
 | `--tile-size-km` | `200` | Overpass query tile size in kilometers. Use smaller values for very large countries or busy servers. |
 | `--format` | `png svg` | Output format(s): any combination of `png`, `svg`, `pdf`. Multiple values are written in one run. |
 | `--output` | auto-generated in `posters/` | Output file path. When set, only a single file is written and its format is inferred from the extension. |
