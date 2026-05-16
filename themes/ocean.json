@@ -1,0 +1,20 @@
+{
+  "name": "Ocean",
+  "description": "Various blues and teals - coastal, clean, and cool.",
+  "bg": "#F0F8FA",
+  "text": "#1A5F7A",
+  "subtext": "#2A7A9A",
+  "boundary": "#D8EAE8",
+  "line_unknown": "#A0D0E0",
+  "line_low": "#70B8D0",
+  "line_mid": "#4A9AB8",
+  "line_high": "#2A7A9A",
+  "line_extra": "#1A5F7A",
+  "fade": "#F0F8FA",
+  "substation_fill": "#D8EAE8",
+  "substation_outline": "#4A9AB8",
+  "substation_marker": "#2A7A9A",
+  "plant_fill": "#B8D8E8",
+  "plant_outline": "#1A5F7A",
+  "plant_marker": "#1A5F7A"
+}

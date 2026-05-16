@@ -1,0 +1,20 @@
+{
+  "name": "Terracotta",
+  "description": "Mediterranean warmth - burnt orange and clay tones on cream.",
+  "bg": "#F5EDE4",
+  "text": "#8B4513",
+  "subtext": "#B8653A",
+  "boundary": "#E8E0D0",
+  "line_unknown": "#E5C4B0",
+  "line_low": "#D9A08A",
+  "line_mid": "#C9846A",
+  "line_high": "#B8653A",
+  "line_extra": "#A0522D",
+  "fade": "#F5EDE4",
+  "substation_fill": "#E8E0D0",
+  "substation_outline": "#C9846A",
+  "substation_marker": "#B8653A",
+  "plant_fill": "#A8C4C4",
+  "plant_outline": "#A0522D",
+  "plant_marker": "#A0522D"
+}

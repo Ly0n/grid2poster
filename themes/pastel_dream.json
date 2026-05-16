@@ -1,0 +1,20 @@
+{
+  "name": "Pastel Dream",
+  "description": "Soft muted pastels with dusty blues and mauves - dreamy artistic aesthetic.",
+  "bg": "#FAF7F2",
+  "text": "#5D5A6D",
+  "subtext": "#9BA4B0",
+  "boundary": "#E8EDE4",
+  "line_unknown": "#D8D2D8",
+  "line_low": "#C9C0C9",
+  "line_mid": "#B5AEBB",
+  "line_high": "#9BA4B0",
+  "line_extra": "#7B8794",
+  "fade": "#FAF7F2",
+  "substation_fill": "#E8EDE4",
+  "substation_outline": "#B5AEBB",
+  "substation_marker": "#9BA4B0",
+  "plant_fill": "#D4E4ED",
+  "plant_outline": "#7B8794",
+  "plant_marker": "#7B8794"
+}

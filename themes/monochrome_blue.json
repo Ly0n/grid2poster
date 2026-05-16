@@ -1,0 +1,20 @@
+{
+  "name": "Monochrome Blue",
+  "description": "Single blue color family with varying saturation - clean and cohesive.",
+  "bg": "#F5F8FA",
+  "text": "#1A3A5C",
+  "subtext": "#2A5580",
+  "boundary": "#E0EAF2",
+  "line_unknown": "#A8C4E0",
+  "line_low": "#7AA0C8",
+  "line_mid": "#4A7AA8",
+  "line_high": "#2A5580",
+  "line_extra": "#1A3A5C",
+  "fade": "#F5F8FA",
+  "substation_fill": "#E0EAF2",
+  "substation_outline": "#4A7AA8",
+  "substation_marker": "#2A5580",
+  "plant_fill": "#D0E0F0",
+  "plant_outline": "#1A3A5C",
+  "plant_marker": "#1A3A5C"
+}

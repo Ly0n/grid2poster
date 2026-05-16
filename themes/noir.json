@@ -1,0 +1,20 @@
+{
+  "name": "Noir",
+  "description": "Pure black background with white and gray grid lines - modern gallery aesthetic.",
+  "bg": "#000000",
+  "text": "#FFFFFF",
+  "subtext": "#E0E0E0",
+  "boundary": "#111111",
+  "line_unknown": "#505050",
+  "line_low": "#808080",
+  "line_mid": "#B0B0B0",
+  "line_high": "#E0E0E0",
+  "line_extra": "#FFFFFF",
+  "fade": "#000000",
+  "substation_fill": "#111111",
+  "substation_outline": "#B0B0B0",
+  "substation_marker": "#E0E0E0",
+  "plant_fill": "#0A0A0A",
+  "plant_outline": "#FFFFFF",
+  "plant_marker": "#FFFFFF"
+}

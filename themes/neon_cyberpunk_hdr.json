@@ -1,0 +1,20 @@
+{
+  "name": "Neon Cyberpunk HDR",
+  "description": "High dynamic range cyberpunk: dim violets for low voltage, electric cyan and hot magenta for high.",
+  "bg": "#06061A",
+  "text": "#00FFFF",
+  "subtext": "#00C8C8",
+  "boundary": "#0F0F25",
+  "line_unknown": "#1C1A38",
+  "line_low": "#2A4A80",
+  "line_mid": "#00B8D8",
+  "line_high": "#5CFFFF",
+  "line_extra": "#FF1ED8",
+  "fade": "#06061A",
+  "substation_fill": "#0F0F25",
+  "substation_outline": "#00C8C8",
+  "substation_marker": "#5CFFFF",
+  "plant_fill": "#2A1232",
+  "plant_outline": "#FF1ED8",
+  "plant_marker": "#FF1ED8"
+}

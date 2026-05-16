@@ -1,0 +1,20 @@
+{
+  "name": "Japanese Ink HDR",
+  "description": "High dynamic range ink-wash: pale low voltage fading to deep sumi black with vivid vermilion accent.",
+  "bg": "#FAF8F5",
+  "text": "#1A1A1A",
+  "subtext": "#6A6A6A",
+  "boundary": "#EEEAE3",
+  "line_unknown": "#DCD8D2",
+  "line_low": "#A8A39C",
+  "line_mid": "#5A5752",
+  "line_high": "#0F0F0F",
+  "line_extra": "#C0241A",
+  "fade": "#FAF8F5",
+  "substation_fill": "#EEEAE3",
+  "substation_outline": "#5A5752",
+  "substation_marker": "#0F0F0F",
+  "plant_fill": "#E8E4E0",
+  "plant_outline": "#C0241A",
+  "plant_marker": "#C0241A"
+}

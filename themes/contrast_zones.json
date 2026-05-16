@@ -1,0 +1,20 @@
+{
+  "name": "Contrast Zones",
+  "description": "Strong contrast showing network density - darker high-voltage lines, lighter lower-voltage lines.",
+  "bg": "#FFFFFF",
+  "text": "#000000",
+  "subtext": "#0F0F0F",
+  "boundary": "#ECECEC",
+  "line_unknown": "#5A5A5A",
+  "line_low": "#404040",
+  "line_mid": "#252525",
+  "line_high": "#0F0F0F",
+  "line_extra": "#000000",
+  "fade": "#FFFFFF",
+  "substation_fill": "#ECECEC",
+  "substation_outline": "#252525",
+  "substation_marker": "#0F0F0F",
+  "plant_fill": "#B0B0B0",
+  "plant_outline": "#000000",
+  "plant_marker": "#000000"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Emerald City",
+  "description": "Lush dark green aesthetic with mint accents.",
+  "bg": "#062C22",
+  "text": "#E3F9F1",
+  "subtext": "#2DB88F",
+  "boundary": "#0F523E",
+  "line_unknown": "#155C46",
+  "line_low": "#1B7559",
+  "line_mid": "#249673",
+  "line_high": "#2DB88F",
+  "line_extra": "#4ADEB0",
+  "fade": "#062C22",
+  "substation_fill": "#0F523E",
+  "substation_outline": "#249673",
+  "substation_marker": "#2DB88F",
+  "plant_fill": "#0D4536",
+  "plant_outline": "#4ADEB0",
+  "plant_marker": "#4ADEB0"
+}
