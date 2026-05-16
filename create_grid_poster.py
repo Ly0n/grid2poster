@@ -458,21 +458,42 @@ def parse_voltage_to_kv(value: Any) -> float | None:
     return max(values) if values else None
 
 
-def style_for_voltage(kv: float | None, theme: Theme, power: str | None = None) -> tuple[str, float, float]:
-    """Return color, linewidth, alpha for a line segment."""
-    if power == "minor_line":
-        return theme.line_low, 0.50, 0.75
-    if kv is None:
-        return theme.line_unknown, 0.25, 0.45
-    if kv >= 500:
-        return theme.line_extra, 1.35, 0.95
-    if kv >= 300:
-        return theme.line_high, 1.05, 0.92
-    if kv >= 150:
-        return theme.line_mid, 0.72, 0.86
-    if kv >= 60:
-        return theme.line_low, 0.48, 0.75
-    return theme.line_unknown, 0.30, 0.55
+def compute_line_styles(lines: gpd.GeoDataFrame, theme: Theme) -> dict[str, np.ndarray]:
+    """Vectorized per-row (color, linewidth, alpha) for the whole frame.
+
+    Lets render_poster batch segments into one matplotlib call per style group
+    instead of one call per segment.
+    """
+    kv = lines["voltage_kv"].astype("float64").to_numpy()
+    n = len(lines)
+    colors = np.full(n, theme.line_unknown, dtype=object)
+    linewidths = np.full(n, 0.30)
+    alphas = np.full(n, 0.55)
+
+    mask = kv >= 60
+    colors[mask] = theme.line_low
+    linewidths[mask] = 0.48
+    alphas[mask] = 0.75
+    mask = kv >= 150
+    colors[mask] = theme.line_mid
+    linewidths[mask] = 0.72
+    alphas[mask] = 0.86
+    mask = kv >= 300
+    colors[mask] = theme.line_high
+    linewidths[mask] = 1.05
+    alphas[mask] = 0.92
+    mask = kv >= 500
+    colors[mask] = theme.line_extra
+    linewidths[mask] = 1.35
+    alphas[mask] = 0.95
+
+    if "power" in lines.columns:
+        minor = lines["power"].to_numpy() == "minor_line"
+        colors[minor] = theme.line_low
+        linewidths[minor] = 0.50
+        alphas[minor] = 0.75
+
+    return {"_color": colors, "_linewidth": linewidths, "_alpha": alphas}
 
 
 def prepare_lines(lines: gpd.GeoDataFrame, boundary: gpd.GeoDataFrame, output_crs: str) -> gpd.GeoDataFrame:
@@ -579,22 +600,23 @@ def render_poster(
 
     boundary.plot(ax=ax, facecolor="none", edgecolor=theme.boundary, linewidth=0.7, alpha=0.9, zorder=1)
 
-    line_iterator = tqdm(
-        lines.iterrows(),
-        total=len(lines),
-        desc="Rendering line segments",
-        unit="line",
+    styled = lines.assign(**compute_line_styles(lines, theme))
+    grouped = styled.groupby(["_color", "_linewidth", "_alpha"], sort=False)
+    group_iter = tqdm(
+        grouped,
+        total=grouped.ngroups,
+        desc="Rendering line groups",
+        unit="group",
         leave=True,
     )
-
-    for _, row in line_iterator:
-        color, linewidth, alpha = style_for_voltage(row.get("voltage_kv"), theme, row.get("power"))
-        gpd.GeoSeries([row.geometry], crs=lines.crs).plot(
+    for (color, linewidth, alpha), group in group_iter:
+        zorder = 2 + group["sort_voltage"].max() / 1000.0
+        group.plot(
             ax=ax,
             color=color,
             linewidth=linewidth,
             alpha=alpha,
-            zorder=2 + (row.get("sort_voltage", 0) or 0) / 1000,
+            zorder=zorder,
         )
 
     ax.set_aspect("equal", adjustable="box")
