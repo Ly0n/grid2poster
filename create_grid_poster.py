@@ -76,6 +76,11 @@ CONTINENT_NAMES = {
     "south america",
 }
 
+# Aggregate region names that combine multiple Natural Earth continents.
+CONTINENT_AGGREGATES: dict[str, frozenset[str]] = {
+    "global": frozenset({"africa", "asia", "europe", "north america", "south america"}),
+}
+
 CACHE_DIR.mkdir(exist_ok=True)
 POSTERS_DIR.mkdir(exist_ok=True)
 THEMES_DIR.mkdir(exist_ok=True)
@@ -229,7 +234,12 @@ def _load_natural_earth_countries() -> gpd.GeoDataFrame:
 
 def _continent_boundary(continent: str) -> gpd.GeoDataFrame:
     countries = _load_natural_earth_countries()
-    match = countries["CONTINENT"].str.lower() == continent.lower()
+    key = continent.lower()
+    aggregate = CONTINENT_AGGREGATES.get(key)
+    if aggregate is not None:
+        match = countries["CONTINENT"].str.lower().isin(aggregate)
+    else:
+        match = countries["CONTINENT"].str.lower() == key
     subset = countries[match]
     if subset.empty:
         raise RuntimeError(f"No countries found for continent '{continent}' in Natural Earth")
@@ -281,14 +291,15 @@ def load_boundary_from_geojson(path: Path, name: str) -> gpd.GeoDataFrame:
     return gpd.GeoDataFrame({"name": [name]}, geometry=[merged], crs="EPSG:4326")
 
 
-def get_country_boundary(country: str, mainland_only: bool = True) -> gpd.GeoDataFrame:
+def get_country_boundary(country: str, mainland_only: bool = True, use_cache: bool = True) -> gpd.GeoDataFrame:
     key = cache_key("boundary_v3", country, mainland_only)
-    cached = cache_get(key)
-    if cached is not None:
-        print(f"Using cached boundary for {country}")
-        return cached
+    if use_cache:
+        cached = cache_get(key)
+        if cached is not None:
+            print(f"Using cached boundary for {country}")
+            return cached
 
-    if country.lower() in CONTINENT_NAMES:
+    if country.lower() in CONTINENT_NAMES or country.lower() in CONTINENT_AGGREGATES:
         print(f"Building continent boundary from Natural Earth: {country}")
         boundary = _continent_boundary(country)
     else:
@@ -363,13 +374,15 @@ def fetch_power_features(
     include_cables: bool = False,
     tile_size_km: float = 200,
     render_crs: str = "EPSG:8857",
+    use_cache: bool = True,
 ) -> gpd.GeoDataFrame:
     values = power_tag_values(include_minor_lines, include_cables)
     key = cache_key("power_features", country, values, tile_size_km, render_crs)
-    cached = cache_get(key)
-    if cached is not None:
-        print(f"Using cached power features for {country}")
-        return cached
+    if use_cache:
+        cached = cache_get(key)
+        if cached is not None:
+            print(f"Using cached power features for {country}")
+            return cached
 
     tiles = make_query_tiles(boundary, tile_size_km=tile_size_km, render_crs=render_crs)
     print(f"Downloading OSM power features: power={values} across {len(tiles):,} tiles")
@@ -796,6 +809,12 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
              "Optionally pass a path; otherwise written next to the poster.",
     )
     parser.add_argument("--verbose-osmnx", action="store_true", help="Print OSMnx request logs")
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Ignore cached boundaries and OSM power features on this run. "
+             "Fresh results are still written to the cache for future runs.",
+    )
     return parser.parse_args(list(argv))
 
 
@@ -809,7 +828,7 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         print("Error: --country is required unless --list-themes is used", file=sys.stderr)
         return 2
 
-    ox.settings.use_cache = True
+    ox.settings.use_cache = not args.no_cache
     ox.settings.log_console = bool(args.verbose_osmnx)
     ox.settings.requests_timeout = 180
     # Keep OSMnx's own guard reasonably high: we explicitly tile the country
@@ -831,7 +850,11 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         print(f"Loading boundary from {args.boundary_geojson}")
         boundary_wgs84 = load_boundary_from_geojson(args.boundary_geojson, args.country)
     else:
-        boundary_wgs84 = get_country_boundary(args.country, mainland_only=not args.include_outlying)
+        boundary_wgs84 = get_country_boundary(
+            args.country,
+            mainland_only=not args.include_outlying,
+            use_cache=not args.no_cache,
+        )
     raw_lines = fetch_power_features(
         country=args.country,
         boundary=boundary_wgs84,
@@ -839,6 +862,7 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         include_cables=args.include_cables,
         tile_size_km=args.tile_size_km,
         render_crs=args.crs,
+        use_cache=not args.no_cache,
     )
 
     boundary_projected = boundary_wgs84.to_crs(args.crs)
