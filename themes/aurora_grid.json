@@ -1,0 +1,20 @@
+{
+  "name": "Aurora Grid",
+  "description": "Deep polar night styling with cyan, green, violet, and warm high-voltage glow.",
+  "bg": "#07111F",
+  "text": "#EAF4FF",
+  "subtext": "#8FB7D8",
+  "boundary": "#1E3A5F",
+  "line_unknown": "#44546A",
+  "line_low": "#38BDF8",
+  "line_mid": "#22C55E",
+  "line_high": "#A855F7",
+  "line_extra": "#FACC15",
+  "fade": "#07111F",
+  "substation_fill": "#0E2238",
+  "substation_outline": "#EAF4FF",
+  "substation_marker": "#FACC15",
+  "plant_fill": "#102A3F",
+  "plant_outline": "#22C55E",
+  "plant_marker": "#38BDF8"
+}
