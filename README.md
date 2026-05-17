@@ -48,10 +48,7 @@ For large countries, reduce the Overpass query tile size:
 python create_grid_poster.py --country Vietnam --tile-size-km 150
 ```
 
-
-```
-
-Include additional distribution grids if available:
+Include distribution grids if available. Coverage various significatly across the globe:
 
 ```bash
 python create_grid_poster.py --country Germany --include-minor-lines
@@ -70,7 +67,7 @@ python create_grid_poster.py --country "Middle East and North Africa" --boundary
 
 All polygonal features in the file are dissolved into a single boundary. The `--country` value is still used for the poster title and output filename.
 
-Render an entire continent. Continent boundaries come from the Natural Earth admin-0 dataset (downloaded and cached on first use) because Nominatim does not resolve continent names. Accepted values are `Africa`, `Antarctica`, `Asia`, `Europe`, `North America`, `Oceania`, and `South America`. The aggregate name `global` combines every inhabited continent.
+Render an entire continent. Continent boundaries come from the Natural Earth admin-0 dataset (downloaded and cached on first use) because Nominatim does not resolve continent names. Accepted values are `Africa`, `Antarctica`, `Asia`, `Europe`, `North America`, `Oceania`, and `South America`. The aggregate name `Global` combines every inhabited continent.
 
 ```bash
 python create_grid_poster.py --country Africa --tile-size-km 500
@@ -83,7 +80,7 @@ Continent-scale runs hit the Overpass API hundreds of times and can take several
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `--country` | - | Country or region name resolvable by Nominatim, a continent name (`Africa`, `Antarctica`, `Asia`, `Europe`, `North America`, `Oceania`, `South America`), or the aggregate `global` (all inhabited continents plus Australia, Papua New Guinea, and New Zealand, clipped at Alaska's northernmost latitude and New Zealand's easternmost main-island longitude). When paired with `--boundary-geojson`, the value is used only as the poster title. |
+| `--country` | - | Country or region name resolvable by Nominatim, a continent name (`Africa`, `Antarctica`, `Asia`, `Europe`, `North America`, `Oceania`, `South America`), or the aggregate `Global`  |
 | `--boundary-geojson` | - | Path to a local GeoJSON file with polygonal boundary features. Overrides the Nominatim/Natural Earth lookup. Useful for custom regions, sub-national areas, or offline workflows. |
 | `--display-country` | value of `--country` | Text to print on the poster. Useful when the geocoder name differs from the desired title. |
 | `--subtitle` | `ELECTRICAL TRANSMISSION GRID` (or `ELECTRICAL GRID` with `--include-minor-lines`) | Override the subtitle printed under the country/region name. |
