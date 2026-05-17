@@ -254,16 +254,16 @@ def _continent_boundary(continent: str) -> gpd.GeoDataFrame:
 
     if key == "global":
         # Clip the global aggregate to a tight bounding box:
-        #   • north — Alaska's northernmost point (~71.4°N), to drop the empty
+        #   • north - Alaska's northernmost point (~71.4°N), to drop the empty
         #     Canadian Arctic, Greenland's interior, and Svalbard.
-        #   • east — New Zealand's easternmost main-island longitude (~178.5°E),
+        #   • east - New Zealand's easternmost main-island longitude (~178.5°E),
         #     to drop Russia's far-eastern Chukotka sliver that otherwise pushes
         #     the viewport out to the antimeridian.
         us = countries[countries["ISO_A3"] == "USA"]
         nz = countries[countries["ISO_A3"] == "NZL"]
         if us.empty or nz.empty:
             raise RuntimeError(
-                "Natural Earth dataset is missing USA or NZL — cannot build global clip"
+                "Natural Earth dataset is missing USA or NZL - cannot build global clip"
             )
         north_lat = float(us.total_bounds[3])
         east_lon = float(nz.total_bounds[2])
@@ -275,7 +275,7 @@ def _continent_boundary(continent: str) -> gpd.GeoDataFrame:
 def keep_main_landmass(geometry: Any) -> Any:
     """Drop disjoint polygons that are far from the main landmass.
 
-    Geocoded country boundaries include overseas territories — e.g. Aruba and
+    Geocoded country boundaries include overseas territories - e.g. Aruba and
     Curaçao for the Netherlands, French Guiana and Réunion for France. We keep
     the largest polygon plus any polygon whose envelope intersects a 3×-inflated
     bounding box of the largest one. This preserves close-by islands such as
@@ -308,7 +308,7 @@ def load_boundary_from_geojson(path: Path, name: str) -> gpd.GeoDataFrame:
     if gdf.empty:
         raise RuntimeError(f"Boundary file '{path}' contains no polygonal geometry")
     if gdf.crs is None:
-        print(f"Boundary file '{path}' has no CRS — assuming EPSG:4326")
+        print(f"Boundary file '{path}' has no CRS - assuming EPSG:4326")
         gdf = gdf.set_crs("EPSG:4326")
     else:
         gdf = gdf.to_crs("EPSG:4326")
