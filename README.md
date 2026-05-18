@@ -137,6 +137,7 @@ python create_grid_poster.py --country "Continental Europe" --boundary-geojson .
 | `regions/mediterranean.geojson` | 22 countries bordering the Mediterranean: Albania, Algeria, Bosnia and Herzegovina, Croatia, Cyprus, Egypt, France, Greece, Israel, Italy, Lebanon, Libya, Malta, Monaco, Montenegro, Morocco, Palestine, Slovenia, Spain, Syria, Tunisia, Turkey. |
 | `regions/mena.geojson` | Middle East and North Africa - 18 countries: Algeria, Bahrain, Egypt, Iraq, Israel, Jordan, Kuwait, Lebanon, Libya, Morocco, Oman, Palestine, Qatar, Saudi Arabia, Syria, Tunisia, United Arab Emirates, Yemen. |
 | `regions/southeast_asia.geojson` | Brunei, Cambodia, Indonesia, Laos, Malaysia, Myanmar, Philippines, Singapore, Thailand, Timor-Leste, Vietnam. |
+| `regions/australia_mainland_tasmania.geojson` | Australia limited to the mainland and Tasmania - excludes outlying territories (Heard, Macquarie, Norfolk, Lord Howe, Christmas, Cocos) so the framing stays tight. |
 | `regions/uk_no_shetland.geojson` | United Kingdom with the Shetland Islands trimmed off for tighter framing. |
 | `regions/us_canada_mainland.geojson` | Continental United States and Canadian mainland south of 60°N - excludes Alaska, the Canadian Arctic, Hawaii and offshore islands. |
 | `regions/wapp.geojson` | West African Power Pool members - Benin, Burkina Faso, Côte d'Ivoire, Gambia, Ghana, Guinea, Guinea-Bissau, Liberia, Mali, Niger, Nigeria, Senegal, Sierra Leone, Togo. |

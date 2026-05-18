@@ -728,7 +728,7 @@ def render_poster(
     ax.text(
         0.985,
         0.018,
-        "© OpenStreetMap contributors, MapYourGrid, Open Energy Transition",
+        "© OpenStreetMap contributors, MapYourGrid, Open Energy Transition · CC BY 4.0",
         transform=ax.transAxes,
         ha="right",
         va="bottom",
