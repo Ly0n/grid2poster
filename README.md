@@ -1,12 +1,12 @@
 # grid2poster — gh-pages gallery
 
 This is an **orphan branch** that hosts the public poster gallery for
-[grid2poster](https://github.com/Ly0n/grid2poster). It has no shared history
-with `main`, so cloning `main` does not pull these images.
+[grid2poster](https://github.com/open-energy-transition/grid2poster). It has
+no shared history with `main`, so cloning `main` does not pull these images.
 
 Once GitHub Pages is enabled on this branch, the gallery is served at:
 
-    https://<your-user>.github.io/grid2poster/
+    https://open-energy-transition.github.io/grid2poster/
 
 ## Layout
 
