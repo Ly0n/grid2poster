@@ -89,8 +89,8 @@ a:hover { color: var(--accent); }
 }
 .built-by a:hover { opacity: 1; }
 .built-by .logo { width: auto; display: block; }
-.built-by .logo-oet { height: 16px; }
-.built-by .logo-myg { height: 20px; }
+.built-by .logo-oet { height: 32px; }
+.built-by .logo-myg { height: 40px; }
 
 /* Filters */
 .filters {
