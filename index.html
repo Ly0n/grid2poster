@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grid2Poster — Gallery</title>
+  <meta name="description" content="Print-ready posters of electrical transmission grids, generated from OpenStreetMap data." />
+  <meta property="og:title" content="Grid2Poster — Gallery" />
+  <meta property="og:description" content="Print-ready posters of electrical transmission grids, generated from OpenStreetMap data." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>Grid<span class="accent">2</span>Poster</h1>
+      <p class="tagline">Print-ready posters of electrical transmission grids, generated from OpenStreetMap data.</p>
+      <p class="meta">
+        <a href="https://github.com/Ly0n/grid2poster">Source on GitHub</a>
+        <span class="sep">·</span>
+        <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>
+        <span class="sep">·</span>
+        <a href="https://creativecommons.org/licenses/by/4.0/">Posters CC BY 4.0</a>
+      </p>
+    </div>
+  </header>
+
+  <nav class="filters wrap" aria-label="Filter posters">
+    <div class="filter-row">
+      <span class="filter-label">Region</span>
+      <div class="filter-group" id="region-filter"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Theme</span>
+      <div class="filter-group" id="theme-filter"></div>
+    </div>
+    <div class="filter-row count-row">
+      <span class="count" id="count"></span>
+    </div>
+  </nav>
+
+  <main class="gallery wrap" id="gallery" aria-live="polite"></main>
+
+  <footer class="site-footer wrap">
+    <p>Generated with <a href="https://github.com/Ly0n/grid2poster">grid2poster</a>. Data © OpenStreetMap contributors, ODbL.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-bar">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-actions">
+        <a class="btn" id="lightbox-download" href="#" download>Download</a>
+        <button class="btn" id="lightbox-svg" type="button" hidden>SVG</button>
+        <button class="btn" id="lightbox-share" type="button">Share</button>
+        <button class="btn btn-icon" id="lightbox-close" type="button" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="lightbox-stage" id="lightbox-stage">
+      <img id="lightbox-img" alt="" draggable="false" />
+    </div>
+    <div class="toast" id="toast" hidden></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
