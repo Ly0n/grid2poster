@@ -118,7 +118,7 @@ Generated posters are written to the `posters/` directory by default. Intermedia
 | ![`mexico_grid_forest_20260512_160112.png`](posters/mexico_grid_forest_20260512_160112.png) | Mexico | `forest` |
 | ![`italy_grid_autumn_20260512_162023.png`](posters/italy_grid_autumn_20260512_162023.png) | Italy | `autumn` |
 | ![`zambia_grid_sunset_20260512_162627.png`](posters/zambia_grid_sunset_20260512_162627.png) | Zambia | `sunset` |
-| ![`marocco_grid_autumn_20260512_165630.png`](posters/marocco_grid_autumn_20260512_165630.png) | Morocco | `autumn` |
+| ![`marocco_grid_autumn_20260512_165630.png`](posters/morocco_grid_autumn_20260518_125319.png) | Morocco | `autumn` |
 | ![`latin_america_grid_emerald_20260516_215030.png`](posters/latin_america_grid_emerald_20260516_215030.png) | Latin America | `emerald` |
 
 ### Predefined regions
