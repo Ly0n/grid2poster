@@ -70,6 +70,28 @@ a:hover { color: var(--accent); }
 .meta .sep { margin: 0 8px; color: var(--ink-mute); }
 .meta a { color: var(--ink-soft); }
 
+.built-by {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin: 18px 0 16px;
+}
+.built-by .sep { color: var(--ink-mute); opacity: 0.6; }
+.built-by a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 120ms;
+}
+.built-by a:hover { opacity: 1; }
+.built-by .logo { width: auto; display: block; }
+.built-by .logo-oet { height: 16px; }
+.built-by .logo-myg { height: 20px; }
+
 /* Filters */
 .filters {
   padding: 24px 24px 8px;
