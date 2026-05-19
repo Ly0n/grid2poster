@@ -1,0 +1,14 @@
+{
+  "name": "Noctilux Glow",
+  "description": "A deep night-print theme with phosphor teal, electric cyan, violet high-voltage arcs, and warm white-gold extra-high-voltage lines.",
+  "bg": "#030814",
+  "text": "#F8FBFF",
+  "subtext": "#86A9C8",
+  "boundary": "#10223A",
+  "line_unknown": "#253449",
+  "line_low": "#1DE9B6",
+  "line_mid": "#5EE7FF",
+  "line_high": "#B873FF",
+  "line_extra": "#FFF7A8",
+  "fade": "#030814"
+}
