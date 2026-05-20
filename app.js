@@ -136,14 +136,14 @@ function card(p) {
   wrap.className = "card";
   wrap.tabIndex = 0;
   wrap.setAttribute("role", "button");
-  wrap.setAttribute("aria-label", `Open ${p.region_display} — ${p.theme_display}`);
+  wrap.setAttribute("aria-label", `Open ${p.region_display} - ${p.theme_display}`);
 
   const imgWrap = document.createElement("div");
   imgWrap.className = "card-image";
   const img = document.createElement("img");
   img.loading = "lazy";
   img.decoding = "async";
-  img.alt = `${p.region_display} transmission grid — ${p.theme_display} theme`;
+  img.alt = `${p.region_display} transmission grid - ${p.theme_display} theme`;
   const src = `posters/${p.png || p.svg}`;
   if (imgObserver) {
     img.dataset.src = src;
@@ -188,6 +188,8 @@ function bindLightbox() {
   document.addEventListener("keydown", (e) => {
     if (els.lightbox.hidden) return;
     if (e.key === "Escape") closeLightbox();
+    else if (e.key === "ArrowRight") stepLightbox(1);
+    else if (e.key === "ArrowLeft") stepLightbox(-1);
   });
   els.lightboxShare.addEventListener("click", shareCurrent);
   els.lightboxSvg.addEventListener("click", () => {
@@ -206,8 +208,8 @@ function bindLightbox() {
 function openLightbox(p) {
   state.current = p;
   els.lightboxImg.src = `posters/${p.png || p.svg}`;
-  els.lightboxImg.alt = `${p.region_display} — ${p.theme_display}`;
-  els.lightboxTitle.textContent = `${p.region_display} — ${p.theme_display}`;
+  els.lightboxImg.alt = `${p.region_display} - ${p.theme_display}`;
+  els.lightboxTitle.textContent = `${p.region_display} - ${p.theme_display}`;
   els.lightboxDownload.href = `posters/${p.png || p.svg}`;
   els.lightboxDownload.setAttribute("download", p.png || p.svg);
   els.lightboxSvg.hidden = !p.svg;
@@ -224,6 +226,15 @@ function closeLightbox() {
   document.body.style.overflow = "";
   state.current = null;
   if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+}
+
+function stepLightbox(delta) {
+  if (!state.current) return;
+  const items = visiblePosters();
+  const i = items.findIndex((p) => p.id === state.current.id);
+  if (i === -1) return;
+  const next = items[(i + delta + items.length) % items.length];
+  if (next) openLightbox(next);
 }
 
 function handleHash() {
@@ -327,7 +338,7 @@ function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 async function shareCurrent() {
   if (!state.current) return;
   const url = absoluteUrl(`#${state.current.id}`);
-  const title = `${state.current.region_display} — ${state.current.theme_display}`;
+  const title = `${state.current.region_display} - ${state.current.theme_display}`;
   const text = `${title} · grid2poster`;
   if (navigator.share) {
     try {

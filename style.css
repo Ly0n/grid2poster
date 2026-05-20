@@ -46,6 +46,17 @@ a:hover { color: var(--accent); }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 
+/* Top banner */
+.top-banner {
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 13px;
+  text-align: center;
+  padding: 8px 0;
+}
+.top-banner a { color: var(--bg); text-decoration: underline; }
+.top-banner a:hover { color: var(--accent); }
+
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--rule);
