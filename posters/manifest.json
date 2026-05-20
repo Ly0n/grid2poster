@@ -1,6 +1,326 @@
 {
   "posters": [
     {
+      "id": "colombia_grid_midnight_blue_20260520_100538",
+      "region": "colombia",
+      "theme": "midnight_blue",
+      "region_display": "Colombia",
+      "theme_display": "Midnight Blue",
+      "timestamp": "20260520_100538",
+      "png": "colombia_grid_midnight_blue_20260520_100538.png",
+      "svg": null
+    },
+    {
+      "id": "south_korea_grid_neon_cyberpunk_20260520_095448",
+      "region": "south_korea",
+      "theme": "neon_cyberpunk",
+      "region_display": "South Korea",
+      "theme_display": "Neon Cyberpunk",
+      "timestamp": "20260520_095448",
+      "png": "south_korea_grid_neon_cyberpunk_20260520_095448.png",
+      "svg": null
+    },
+    {
+      "id": "new_zealand_grid_noctilux_glow_20260519_231717",
+      "region": "new_zealand",
+      "theme": "noctilux_glow",
+      "region_display": "New Zealand",
+      "theme_display": "Noctilux Glow",
+      "timestamp": "20260519_231717",
+      "png": "new_zealand_grid_noctilux_glow_20260519_231717.png",
+      "svg": null
+    },
+    {
+      "id": "mexico_grid_paper_grid_20260519_231539",
+      "region": "mexico",
+      "theme": "paper_grid",
+      "region_display": "Mexico",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_231539",
+      "png": "mexico_grid_paper_grid_20260519_231539.png",
+      "svg": null
+    },
+    {
+      "id": "europe_grid_neon_cyberpunk_20260519_231003",
+      "region": "europe",
+      "theme": "neon_cyberpunk",
+      "region_display": "Europe",
+      "theme_display": "Neon Cyberpunk",
+      "timestamp": "20260519_231003",
+      "png": "europe_grid_neon_cyberpunk_20260519_231003.png",
+      "svg": null
+    },
+    {
+      "id": "new_zealand_grid_paper_grid_20260519_225346",
+      "region": "new_zealand",
+      "theme": "paper_grid",
+      "region_display": "New Zealand",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_225346",
+      "png": "new_zealand_grid_paper_grid_20260519_225346.png",
+      "svg": null
+    },
+    {
+      "id": "japan_grid_paper_grid_20260519_224740",
+      "region": "japan",
+      "theme": "paper_grid",
+      "region_display": "Japan",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_224740",
+      "png": "japan_grid_paper_grid_20260519_224740.png",
+      "svg": null
+    },
+    {
+      "id": "australia_grid_paper_grid_20260519_222412",
+      "region": "australia",
+      "theme": "paper_grid",
+      "region_display": "Australia",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_222412",
+      "png": "australia_grid_paper_grid_20260519_222412.png",
+      "svg": null
+    },
+    {
+      "id": "florida_grid_midnight_blue_20260519_222119",
+      "region": "florida",
+      "theme": "midnight_blue",
+      "region_display": "Florida",
+      "theme_display": "Midnight Blue",
+      "timestamp": "20260519_222119",
+      "png": "florida_grid_midnight_blue_20260519_222119.png",
+      "svg": null
+    },
+    {
+      "id": "michigan_grid_paper_grid_20260519_222107",
+      "region": "michigan",
+      "theme": "paper_grid",
+      "region_display": "Michigan",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_222107",
+      "png": "michigan_grid_paper_grid_20260519_222107.png",
+      "svg": null
+    },
+    {
+      "id": "colorado_grid_paper_grid_20260519_221945",
+      "region": "colorado",
+      "theme": "paper_grid",
+      "region_display": "Colorado",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260519_221945",
+      "png": "colorado_grid_paper_grid_20260519_221945.png",
+      "svg": null
+    },
+    {
+      "id": "portugal_grid_aurora_grid_20260519_221205",
+      "region": "portugal",
+      "theme": "aurora_grid",
+      "region_display": "Portugal",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260519_221205",
+      "png": "portugal_grid_aurora_grid_20260519_221205.png",
+      "svg": null
+    },
+    {
+      "id": "michigan_grid_aurora_grid_20260519_214232",
+      "region": "michigan",
+      "theme": "aurora_grid",
+      "region_display": "Michigan",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260519_214232",
+      "png": "michigan_grid_aurora_grid_20260519_214232.png",
+      "svg": null
+    },
+    {
+      "id": "canada_grid_aurora_grid_20260519_212223",
+      "region": "canada",
+      "theme": "aurora_grid",
+      "region_display": "Canada",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260519_212223",
+      "png": "canada_grid_aurora_grid_20260519_212223.png",
+      "svg": null
+    },
+    {
+      "id": "washington_state_grid_electric_midnight_20260519_211625",
+      "region": "washington_state",
+      "theme": "electric_midnight",
+      "region_display": "Washington State",
+      "theme_display": "Electric Midnight",
+      "timestamp": "20260519_211625",
+      "png": "washington_state_grid_electric_midnight_20260519_211625.png",
+      "svg": null
+    },
+    {
+      "id": "china_grid_midnight_blue_20260519_090833",
+      "region": "china",
+      "theme": "midnight_blue",
+      "region_display": "China",
+      "theme_display": "Midnight Blue",
+      "timestamp": "20260519_090833",
+      "png": "china_grid_midnight_blue_20260519_090833.png",
+      "svg": null
+    },
+    {
+      "id": "pakistan_grid_prismatic_current_20260519_000351",
+      "region": "pakistan",
+      "theme": "prismatic_current",
+      "region_display": "Pakistan",
+      "theme_display": "Prismatic Current",
+      "timestamp": "20260519_000351",
+      "png": "pakistan_grid_prismatic_current_20260519_000351.png",
+      "svg": null
+    },
+    {
+      "id": "germany_grid_paper_grid_20260518_234211",
+      "region": "germany",
+      "theme": "paper_grid",
+      "region_display": "Germany",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260518_234211",
+      "png": "germany_grid_paper_grid_20260518_234211.png",
+      "svg": null
+    },
+    {
+      "id": "texas_grid_signal_nights_20260518_234112",
+      "region": "texas",
+      "theme": "signal_nights",
+      "region_display": "Texas",
+      "theme_display": "Signal Nights",
+      "timestamp": "20260518_234112",
+      "png": "texas_grid_signal_nights_20260518_234112.png",
+      "svg": null
+    },
+    {
+      "id": "ethiopia_grid_copper_patina_20260518_233944",
+      "region": "ethiopia",
+      "theme": "copper_patina",
+      "region_display": "Ethiopia",
+      "theme_display": "Copper Patina",
+      "timestamp": "20260518_233944",
+      "png": "ethiopia_grid_copper_patina_20260518_233944.png",
+      "svg": null
+    },
+    {
+      "id": "texas_grid_warm_beige_20260518_232505",
+      "region": "texas",
+      "theme": "warm_beige",
+      "region_display": "Texas",
+      "theme_display": "Warm Beige",
+      "timestamp": "20260518_232505",
+      "png": "texas_grid_warm_beige_20260518_232505.png",
+      "svg": null
+    },
+    {
+      "id": "africa_grid_aurora_grid_20260518_230726",
+      "region": "africa",
+      "theme": "aurora_grid",
+      "region_display": "Africa",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260518_230726",
+      "png": "africa_grid_aurora_grid_20260518_230726.png",
+      "svg": null
+    },
+    {
+      "id": "south_asia_grid_aurora_grid_20260518_230448",
+      "region": "south_asia",
+      "theme": "aurora_grid",
+      "region_display": "South Asia",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260518_230448",
+      "png": "south_asia_grid_aurora_grid_20260518_230448.png",
+      "svg": null
+    },
+    {
+      "id": "egypt_grid_noir_20260518_225140",
+      "region": "egypt",
+      "theme": "noir",
+      "region_display": "Egypt",
+      "theme_display": "Noir",
+      "timestamp": "20260518_225140",
+      "png": "egypt_grid_noir_20260518_225140.png",
+      "svg": null
+    },
+    {
+      "id": "japan_grid_aurora_grid_20260518_224946",
+      "region": "japan",
+      "theme": "aurora_grid",
+      "region_display": "Japan",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260518_224946",
+      "png": "japan_grid_aurora_grid_20260518_224946.png",
+      "svg": null
+    },
+    {
+      "id": "egypt_grid_paper_grid_20260518_224907",
+      "region": "egypt",
+      "theme": "paper_grid",
+      "region_display": "Egypt",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260518_224907",
+      "png": "egypt_grid_paper_grid_20260518_224907.png",
+      "svg": null
+    },
+    {
+      "id": "ireland_grid_paper_grid_20260518_222902",
+      "region": "ireland",
+      "theme": "paper_grid",
+      "region_display": "Ireland",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260518_222902",
+      "png": "ireland_grid_paper_grid_20260518_222902.png",
+      "svg": null
+    },
+    {
+      "id": "central_asia_grid_aurora_grid_20260518_194328",
+      "region": "central_asia",
+      "theme": "aurora_grid",
+      "region_display": "Central Asia",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260518_194328",
+      "png": "central_asia_grid_aurora_grid_20260518_194328.png",
+      "svg": null
+    },
+    {
+      "id": "myanmar_grid_aurora_grid_20260518_191700",
+      "region": "myanmar",
+      "theme": "aurora_grid",
+      "region_display": "Myanmar",
+      "theme_display": "Aurora Grid",
+      "timestamp": "20260518_191700",
+      "png": "myanmar_grid_aurora_grid_20260518_191700.png",
+      "svg": null
+    },
+    {
+      "id": "malaysia_grid_copper_patina_20260518_185402",
+      "region": "malaysia",
+      "theme": "copper_patina",
+      "region_display": "Malaysia",
+      "theme_display": "Copper Patina",
+      "timestamp": "20260518_185402",
+      "png": "malaysia_grid_copper_patina_20260518_185402.png",
+      "svg": null
+    },
+    {
+      "id": "bangladesh_grid_blueprint_20260518_175211",
+      "region": "bangladesh",
+      "theme": "blueprint",
+      "region_display": "Bangladesh",
+      "theme_display": "Blueprint",
+      "timestamp": "20260518_175211",
+      "png": "bangladesh_grid_blueprint_20260518_175211.png",
+      "svg": null
+    },
+    {
+      "id": "thailand_grid_terracotta_20260518_174008",
+      "region": "thailand",
+      "theme": "terracotta",
+      "region_display": "Thailand",
+      "theme_display": "Terracotta",
+      "timestamp": "20260518_174008",
+      "png": "thailand_grid_terracotta_20260518_174008.png",
+      "svg": null
+    },
+    {
       "id": "morocco_grid_autumn_20260518_125319",
       "region": "morocco",
       "theme": "autumn",
@@ -38,16 +358,6 @@
       "theme_display": "Neon Cyberpunk",
       "timestamp": "20260518_005912",
       "png": "middle_east_and_north_africa_grid_neon_cyberpunk_20260518_005912.png",
-      "svg": null
-    },
-    {
-      "id": "middle_east_and_north_africa_grid_neon_cyberpunk_20260518_001957",
-      "region": "middle_east_and_north_africa",
-      "theme": "neon_cyberpunk",
-      "region_display": "Middle East And North Africa",
-      "theme_display": "Neon Cyberpunk",
-      "timestamp": "20260518_001957",
-      "png": "middle_east_and_north_africa_grid_neon_cyberpunk_20260518_001957.png",
       "svg": null
     },
     {
@@ -311,16 +621,6 @@
       "svg": null
     },
     {
-      "id": "japan_grid_paper_grid_20260516_174513",
-      "region": "japan",
-      "theme": "paper_grid",
-      "region_display": "Japan",
-      "theme_display": "Paper Grid",
-      "timestamp": "20260516_174513",
-      "png": "japan_grid_paper_grid_20260516_174513.png",
-      "svg": null
-    },
-    {
       "id": "greece_grid_paper_grid_20260516_171901",
       "region": "greece",
       "theme": "paper_grid",
@@ -411,6 +711,16 @@
       "svg": null
     },
     {
+      "id": "netherlands_grid_neon_cyberpunk_hdr_20260515_161513",
+      "region": "netherlands",
+      "theme": "neon_cyberpunk_hdr",
+      "region_display": "Netherlands",
+      "theme_display": "Neon Cyberpunk HDR",
+      "timestamp": "20260515_161513",
+      "png": "netherlands_grid_neon_cyberpunk_hdr_20260515_161513.png",
+      "svg": null
+    },
+    {
       "id": "netherlands_grid_japanese_ink_20260515_155206",
       "region": "netherlands",
       "theme": "japanese_ink",
@@ -448,56 +758,6 @@
       "theme_display": "Japanese Ink",
       "timestamp": "20260514_121413",
       "png": "british_columbia_grid_japanese_ink_20260514_121413.png",
-      "svg": null
-    },
-    {
-      "id": "west_african_power_pool_grid_japanese_ink_20260514_120934",
-      "region": "west_african_power_pool",
-      "theme": "japanese_ink",
-      "region_display": "West African Power Pool",
-      "theme_display": "Japanese Ink",
-      "timestamp": "20260514_120934",
-      "png": "west_african_power_pool_grid_japanese_ink_20260514_120934.png",
-      "svg": null
-    },
-    {
-      "id": "zambia_grid_sunset_20260514_115613",
-      "region": "zambia",
-      "theme": "sunset",
-      "region_display": "Zambia",
-      "theme_display": "Sunset",
-      "timestamp": "20260514_115613",
-      "png": null,
-      "svg": "zambia_grid_sunset_20260514_115613.svg"
-    },
-    {
-      "id": "nigeria_grid_paper_grid_20260512_221933",
-      "region": "nigeria",
-      "theme": "paper_grid",
-      "region_display": "Nigeria",
-      "theme_display": "Paper Grid",
-      "timestamp": "20260512_221933",
-      "png": null,
-      "svg": "nigeria_grid_paper_grid_20260512_221933.svg"
-    },
-    {
-      "id": "nigeria_grid_paper_grid_20260512_210551",
-      "region": "nigeria",
-      "theme": "paper_grid",
-      "region_display": "Nigeria",
-      "theme_display": "Paper Grid",
-      "timestamp": "20260512_210551",
-      "png": "nigeria_grid_paper_grid_20260512_210551.png",
-      "svg": null
-    },
-    {
-      "id": "china_grid_paper_grid_20260512_173256",
-      "region": "china",
-      "theme": "paper_grid",
-      "region_display": "China",
-      "theme_display": "Paper Grid",
-      "timestamp": "20260512_173256",
-      "png": "china_grid_paper_grid_20260512_173256.png",
       "svg": null
     },
     {
