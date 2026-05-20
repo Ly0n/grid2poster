@@ -37,6 +37,7 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
 import osmnx as ox
+from matplotlib import patheffects
 from matplotlib.font_manager import FontProperties
 from shapely.geometry import LineString, MultiLineString, Polygon, MultiPolygon, box
 from shapely.ops import unary_union
@@ -514,7 +515,13 @@ def parse_voltage_to_kv(value: Any) -> float | None:
     return max(values) if values else None
 
 
-def compute_line_styles(lines: gpd.GeoDataFrame, theme: Theme) -> dict[str, np.ndarray]:
+def compute_line_styles(
+    lines: gpd.GeoDataFrame,
+    theme: Theme,
+    *,
+    linewidth_scale: float = 1.0,
+    fade_unknown: bool = False,
+) -> dict[str, np.ndarray]:
     """Vectorized per-row (color, linewidth, alpha) for the whole frame.
 
     Lets render_poster batch segments into one matplotlib call per style group
@@ -543,6 +550,7 @@ def compute_line_styles(lines: gpd.GeoDataFrame, theme: Theme) -> dict[str, np.n
     linewidths[mask] = 1.35
     alphas[mask] = 0.95
 
+    is_cable = np.zeros(n, dtype=bool)
     if "power" in lines.columns:
         power = lines["power"].to_numpy()
         minor = power == "minor_line"
@@ -552,11 +560,23 @@ def compute_line_styles(lines: gpd.GeoDataFrame, theme: Theme) -> dict[str, np.n
 
         # Cables (underground/submarine) are often HVDC interconnectors and
         # frequently lack voltage tags — make them legible regardless.
-        cable = power == "cable"
-        no_voltage = cable & np.isnan(kv)
+        is_cable = power == "cable"
+        no_voltage = is_cable & np.isnan(kv)
         colors[no_voltage] = theme.line_mid
-        linewidths[cable] = np.maximum(linewidths[cable] * 1.6, 0.85)
-        alphas[cable] = np.maximum(alphas[cable], 0.9)
+        linewidths[is_cable] = np.maximum(linewidths[is_cable] * 1.6, 0.85)
+        alphas[is_cable] = np.maximum(alphas[is_cable], 0.9)
+
+    if fade_unknown:
+        # Untagged-voltage lines are mostly noise at continent/global extent —
+        # fade them strongly so they recede without disappearing. Cables are
+        # exempt because HVDC interconnectors frequently lack a voltage tag.
+        unknown = np.isnan(kv) & ~is_cable
+        alphas[unknown] *= 0.35
+
+    if linewidth_scale != 1.0:
+        # Keep the heaviest tier within a sensible real-world width on the
+        # paper; floor at 0.15 pt so hairlines stay visible.
+        linewidths = np.maximum(linewidths * linewidth_scale, 0.15)
 
     return {"_color": colors, "_linewidth": linewidths, "_alpha": alphas}
 
@@ -689,6 +709,7 @@ def render_poster(
     include_minor_lines: bool = False,
     subtitle: str | None = None,
     padding: float = 0.10,
+    large_scale: bool = False,
 ) -> None:
     fig, ax = plt.subplots(figsize=(width, height), facecolor=theme.bg)
     ax.set_facecolor(theme.bg)
@@ -697,7 +718,29 @@ def render_poster(
 
     boundary.plot(ax=ax, facecolor="none", edgecolor=theme.boundary, linewidth=0.7, alpha=0.9, zorder=1)
 
-    styled = lines.assign(**compute_line_styles(lines, theme))
+    linewidth_scale = 1.0
+    halo_extra_pt = 0.0
+    if large_scale:
+        # boundary is already in the projected (meter-based) CRS at this point.
+        minx, miny, maxx, maxy = boundary.total_bounds
+        x_span_km = max((maxx - minx), 1.0) / 1000.0
+        y_span_km = max((maxy - miny), 1.0) / 1000.0
+        km_per_pt = max(x_span_km / (width * 72.0), y_span_km / (height * 72.0))
+        target_ground_km = 8.0
+        heaviest_lw_pt = 1.35
+        linewidth_scale = min(1.0, target_ground_km / (heaviest_lw_pt * km_per_pt))
+        halo_extra_pt = 0.4
+        print(
+            f"Large-scale mode: km/pt ≈ {km_per_pt:.1f}, "
+            f"linewidth scale = {linewidth_scale:.2f}, halo = {halo_extra_pt:.2f} pt"
+        )
+
+    styled = lines.assign(**compute_line_styles(
+        lines,
+        theme,
+        linewidth_scale=linewidth_scale,
+        fade_unknown=large_scale,
+    ))
     grouped = styled.groupby(["_color", "_linewidth", "_alpha"], sort=False)
     group_iter = tqdm(
         grouped,
@@ -708,13 +751,25 @@ def render_poster(
     )
     for (color, linewidth, alpha), group in group_iter:
         zorder = 2 + group["sort_voltage"].max() / 1000.0
-        group.plot(
+        plot_kwargs: dict[str, Any] = dict(
             ax=ax,
             color=color,
             linewidth=linewidth,
             alpha=alpha,
             zorder=zorder,
         )
+        if halo_extra_pt > 0:
+            # Fully-opaque bg-colored stroke under each line creates visual
+            # separation at dense crossings; the original colored line is
+            # drawn on top by withStroke.
+            plot_kwargs["path_effects"] = [
+                patheffects.withStroke(
+                    linewidth=linewidth + halo_extra_pt * 2,
+                    foreground=theme.bg,
+                    alpha=1.0,
+                )
+            ]
+        group.plot(**plot_kwargs)
 
     ax.set_aspect("equal", adjustable="box")
     set_country_extent(ax, boundary, width, height, padding=padding)
@@ -834,6 +889,14 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         default=0.10,
         help="Fractional padding around the boundary bounds. Lower = more zoomed in "
              "(e.g. 0 = tight fit, -0.05 = crop slightly into the bounds, 0.20 = looser).",
+    )
+    parser.add_argument(
+        "--large-scale",
+        action="store_true",
+        help="Tune styling for continent/global posters: scale linewidths so the "
+             "heaviest line stays roughly 8 km wide on the ground, halo each line "
+             "against the background so dense crossings remain legible, and drop "
+             "power=minor_line / strongly fade unknown-voltage clutter.",
     )
     parser.add_argument("--theme", "-t", default="paper_grid", help="Theme ID from themes/")
     parser.add_argument("--list-themes", action="store_true", help="List available themes and exit")
@@ -976,6 +1039,13 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         raw_lines, boundary_wgs84, args.crs, cable_sea_buffer_km=cable_buffer_km
     )
 
+    if args.large_scale and "power" in lines_projected.columns:
+        before = len(lines_projected)
+        lines_projected = lines_projected[lines_projected["power"] != "minor_line"].copy()
+        dropped = before - len(lines_projected)
+        if dropped:
+            print(f"Large-scale mode: dropped {dropped:,} minor_line segments")
+
     if args.output:
         fmt = (args.output.suffix.lstrip(".") or args.format[0]).lower()
         if fmt not in {"png", "svg", "pdf"}:
@@ -1012,6 +1082,7 @@ def main(argv: Iterable[str] = sys.argv[1:]) -> int:
         include_minor_lines=args.include_minor_lines,
         subtitle=args.subtitle,
         padding=args.padding,
+        large_scale=args.large_scale,
     )
     return 0
 

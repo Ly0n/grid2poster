@@ -30,6 +30,7 @@ Coverage and quality in your country can be improved by mapping transmission inf
 ## Installation
 
 ```bash
+git clone --branch main --single-branch https://github.com/open-energy-transition/grid2poster 
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
