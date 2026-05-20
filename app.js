@@ -33,6 +33,26 @@ const els = {
   toast: document.getElementById("toast"),
 };
 
+// Lazy-load card images via IntersectionObserver. Images get a real `src`
+// only once they scroll within ~400px of the viewport, so a fresh page load
+// fetches a handful of posters instead of all 80+.
+const imgObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(onIntersect, { rootMargin: "400px 0px", threshold: 0.01 })
+  : null;
+
+function onIntersect(entries, obs) {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    const img = entry.target;
+    const src = img.dataset.src;
+    if (src) {
+      img.src = src;
+      img.removeAttribute("data-src");
+    }
+    obs.unobserve(img);
+  }
+}
+
 init();
 
 async function init() {
@@ -123,8 +143,14 @@ function card(p) {
   const img = document.createElement("img");
   img.loading = "lazy";
   img.decoding = "async";
-  img.src = `posters/${p.png || p.svg}`;
   img.alt = `${p.region_display} transmission grid — ${p.theme_display} theme`;
+  const src = `posters/${p.png || p.svg}`;
+  if (imgObserver) {
+    img.dataset.src = src;
+    imgObserver.observe(img);
+  } else {
+    img.src = src;
+  }
   imgWrap.appendChild(img);
 
   const body = document.createElement("div");
