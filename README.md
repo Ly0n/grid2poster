@@ -147,6 +147,33 @@ python create_grid_poster.py --country "Continental Europe" --boundary-geojson .
 
 For ad-hoc areas (a single state, a metro region, a custom polygon), supply your own GeoJSON via `--boundary-geojson`. All polygonal features in the file are dissolved into one boundary.
 
+### Contributing posters
+
+The [online gallery](https://open-energy-transition.github.io/grid2poster/) is served from the orphan `gh-pages` branch, which has no shared history with `main`. The install instructions above use `--single-branch main` and therefore do **not** fetch it.Fetch it explicitly the first time you contribute:
+
+```bash
+git fetch origin gh-pages
+```
+
+To add a poster:
+
+1. Render it from `main` with `create_grid_poster.py`. 
+   ```bash
+   python create_grid_poster.py --country Spain --theme paper_grid
+   ```
+2. Move the PNG (and SVG, if you want to offer the vector download) out of `posters/` so it survives the branch switch, then switch to `gh-pages`:
+   ```bash
+   mv posters/spain_grid_paper_grid_*.png /tmp/
+   git checkout gh-pages
+   mv /tmp/spain_grid_paper_grid_*.png posters/
+   ```
+3. Rebuild the manifest and commit:
+   ```bash
+   python build_manifest.py
+   git add posters/ && git commit -m "Add Spain (paper_grid)"
+   ```
+4. Open a pull request targeting `gh-pages` (not `main`).
+
 ## Attribution
 
 Map data © OpenStreetMap contributors.
