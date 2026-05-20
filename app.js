@@ -30,6 +30,8 @@ const els = {
   lightboxDownload: document.getElementById("lightbox-download"),
   lightboxSvg: document.getElementById("lightbox-svg"),
   lightboxShare: document.getElementById("lightbox-share"),
+  lightboxPrev: document.getElementById("lightbox-prev"),
+  lightboxNext: document.getElementById("lightbox-next"),
   toast: document.getElementById("toast"),
 };
 
@@ -192,6 +194,8 @@ function bindLightbox() {
     else if (e.key === "ArrowLeft") stepLightbox(-1);
   });
   els.lightboxShare.addEventListener("click", shareCurrent);
+  els.lightboxPrev.addEventListener("click", (e) => { e.stopPropagation(); stepLightbox(-1); });
+  els.lightboxNext.addEventListener("click", (e) => { e.stopPropagation(); stepLightbox(1); });
   els.lightboxSvg.addEventListener("click", () => {
     if (state.current?.svg) triggerDownload(`posters/${state.current.svg}`, state.current.svg);
   });
@@ -213,6 +217,9 @@ function openLightbox(p) {
   els.lightboxDownload.href = `posters/${p.png || p.svg}`;
   els.lightboxDownload.setAttribute("download", p.png || p.svg);
   els.lightboxSvg.hidden = !p.svg;
+  const multi = visiblePosters().length > 1;
+  els.lightboxPrev.hidden = !multi;
+  els.lightboxNext.hidden = !multi;
   resetZoom();
   els.lightbox.hidden = false;
   els.lightbox.setAttribute("aria-hidden", "false");

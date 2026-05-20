@@ -266,6 +266,37 @@ a:hover { color: var(--accent); }
 }
 .lightbox-stage.panning img { transition: none; }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(20, 23, 26, 0.55);
+  color: #f6f4ef;
+  font-size: 28px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms, opacity 120ms, transform 120ms;
+  z-index: 2;
+}
+.lightbox-nav:hover { background: rgba(20, 23, 26, 0.85); }
+.lightbox-nav:focus-visible { outline: 2px solid #f6f4ef; outline-offset: 2px; }
+.lightbox-nav-prev { left: 16px; }
+.lightbox-nav-next { right: 16px; }
+.lightbox-nav[hidden] { display: none; }
+@media (max-width: 600px) {
+  .lightbox-nav { width: 40px; height: 40px; font-size: 24px; }
+  .lightbox-nav-prev { left: 8px; }
+  .lightbox-nav-next { right: 8px; }
+}
+
 .toast {
   position: absolute;
   left: 50%;

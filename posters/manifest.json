@@ -331,16 +331,6 @@
       "svg": null
     },
     {
-      "id": "marocco_grid_autumn_20260518_124812",
-      "region": "marocco",
-      "theme": "autumn",
-      "region_display": "Marocco",
-      "theme_display": "Autumn",
-      "timestamp": "20260518_124812",
-      "png": "marocco_grid_autumn_20260518_124812.png",
-      "svg": null
-    },
-    {
       "id": "australia_grid_aurora_grid_20260518_115635",
       "region": "australia",
       "theme": "aurora_grid",
@@ -711,6 +701,16 @@
       "svg": null
     },
     {
+      "id": "netherlands_grid_neon_cyberpunk_hdr_20260515_161513",
+      "region": "netherlands",
+      "theme": "neon_cyberpunk_hdr",
+      "region_display": "Netherlands",
+      "theme_display": "Neon Cyberpunk HDR",
+      "timestamp": "20260515_161513",
+      "png": "netherlands_grid_neon_cyberpunk_hdr_20260515_161513.png",
+      "svg": null
+    },
+    {
       "id": "netherlands_grid_japanese_ink_20260515_155206",
       "region": "netherlands",
       "theme": "japanese_ink",
@@ -751,24 +751,14 @@
       "svg": null
     },
     {
-      "id": "west_african_power_pool_grid_japanese_ink_20260514_120934",
+      "id": "west_african_power_pool_grid_paper_grid_20260513_130939",
       "region": "west_african_power_pool",
-      "theme": "japanese_ink",
+      "theme": "paper_grid",
       "region_display": "West African Power Pool",
-      "theme_display": "Japanese Ink",
-      "timestamp": "20260514_120934",
-      "png": "west_african_power_pool_grid_japanese_ink_20260514_120934.png",
+      "theme_display": "Paper Grid",
+      "timestamp": "20260513_130939",
+      "png": "west_african_power_pool_grid_paper_grid_20260513_130939.png",
       "svg": null
-    },
-    {
-      "id": "zambia_grid_sunset_20260514_115613",
-      "region": "zambia",
-      "theme": "sunset",
-      "region_display": "Zambia",
-      "theme_display": "Sunset",
-      "timestamp": "20260514_115613",
-      "png": null,
-      "svg": "zambia_grid_sunset_20260514_115613.svg"
     },
     {
       "id": "italy_grid_autumn_20260512_162023",
